@@ -6,15 +6,9 @@
     fxLayoutGap="10px" 
     fxLayoutGap.xs="0"
 >
-    <div fxFlex="100">
-        <div>
-        <h3>{{dish.name | uppercase}}</h3>
-        <hr>
-        </div>
-    </div>    
 
     <div fxFlex="40" *ngIf="dish">
-        <mat-card>
+        <mat-card *ngIf="dish">
             <mat-card-header>
                 <mat-card-title>
                     <h3>{{dish.name | uppercase}}</h3>
@@ -33,7 +27,7 @@
     </div>
 
     <div fxFlex="40" *ngIf="dish">
-        <mat-card>
+        <mat-card >
             <mat-card-header>
                 <mat-card-title>
                     <h3 *ngIf="dish">{{dish.name | uppercase}}</h3>
@@ -51,4 +45,7 @@
             </mat-card-content>
         </mat-card>
     </div>
+    <div fxFlex [hidden]="dish">
+        <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
+      </div>
 </div>
