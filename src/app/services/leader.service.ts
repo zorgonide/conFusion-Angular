@@ -6,11 +6,11 @@ import { LEADERS } from '../shared/leaders';
   providedIn: 'root'
 })
 export class LeaderService {
-  getLeaders(): Leader[] {
-    return LEADERS;
+  getLeaders(): Promise<Leader[]> {
+    return Promise.resolve(LEADERS);
   }
-  getFeaturedPromotion(): Leader {
-    return LEADERS.filter((lead) => lead.featured)[0];
+  getFeaturedPromotion(): Promise<Leader> {
+    return Promise.resolve(LEADERS.filter((lead) => lead.featured)[0]);
   }
   constructor() { }
 }
