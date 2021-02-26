@@ -7,7 +7,18 @@ import { MatListModule } from '@angular/material/list';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule} from '@angular/material/card';
 import { MatButtonModule} from '@angular/material/button';
-
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatSliderModule } from '@angular/material/slider';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 
@@ -21,21 +32,13 @@ import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 
 import { DishService } from './services/dish.service';
-
-import { AppRoutingModule } from './app-routing/app-routing.module';
 import { PromotionService } from './services/promotion.service';
 import { LeaderService } from './services/leader.service';
+import { AppRoutingModule } from './app-routing/app-routing.module';
 import { LoginComponent } from './login/login.component';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatSliderModule } from '@angular/material/slider';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { FormsModule } from '@angular/forms';
-import { MatSelectModule } from '@angular/material/select';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { ReactiveFormsModule } from '@angular/forms';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { baseURL } from './shared/baseurl';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,33 +49,36 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     HomeComponent,
     AboutComponent,
     ContactComponent,
-    LoginComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
     AppRoutingModule,
+    HttpClientModule,
     MatToolbarModule,
     MatListModule,
     MatGridListModule,
     MatCardModule,
     MatButtonModule,
-    MatProgressSpinnerModule,
     MatDialogModule,
-    MatFormFieldModule, 
+    MatFormFieldModule,
     MatInputModule,
     MatCheckboxModule,
     FormsModule,
-    MatSelectModule,
-    MatSliderModule,
-    MatSlideToggleModule,
     ReactiveFormsModule,
+    MatSelectModule,
+    MatSlideToggleModule,
+    MatProgressSpinnerModule,
+    MatSliderModule,
+    HttpModule
   ],
   providers: [
-    DishService,
-    PromotionService,
-    LeaderService
+    DishService ,
+    PromotionService ,
+    LeaderService ,
+    {provide: 'BaseURL' , useValue: baseURL}
   ],
   entryComponents: [
     LoginComponent
