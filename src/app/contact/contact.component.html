@@ -9,7 +9,7 @@
     </div>
   </div>
 
-  <div fxFlex>
+  <div fxFlex [@expand]>
     <h3>Location Information</h3> 
     <div fxLayout="column" fxLayout.gt-sm="row">
       <div fxFlex="50" fxFlexOffset="20px">
@@ -35,11 +35,11 @@
       </div>
     </div>
   </div>
-  <div fxFlex fxFlexOffset="20px" class="form-size">
+  <div fxFlex fxFlexOffset="20px" class="form-size" [@expand]>
     <h3>Send us your Feedback</h3>
     <!-- <p>{{ feedbackForm.value | json }} {{ feedbackForm.status | json }}</p> -->
 
-    <form novalidate [formGroup]="feedbackForm" #fform="ngForm" (ngSubmit)="onSubmit()">
+    <form novalidate [formGroup]="feedbackForm" #fform="ngForm" (ngSubmit)="onSubmit()" [@expand] *ngIf="!isLoading" >
       <p>
         <mat-form-field class="half-width">
           <input matInput formControlName="firstname" placeholder="First Name" type="text" required>
@@ -80,4 +80,33 @@
       <button type="submit" mat-button class="background-primary text-floral-white" [disabled]="feedbackForm.invalid">Submit</button>
     </form>
   </div>
+  <mat-card *ngIf="isLoading && !response" style="display: flex; justify-content: center; align-items: center" [@expand]>
+      <mat-progress-spinner
+        color="primary"
+        mode="indeterminate">
+      </mat-progress-spinner>
+    </mat-card>
+    <mat-card *ngIf="response"
+      style="display: flex;"
+      [@expand]>
+      <mat-card-header>
+          <mat-card-title>
+              <h3>Your Submission</h3>
+          </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+            <h4>Name:</h4>
+            <p>{{feedback.firstname + ' ' + feedback.lastname}}</p>
+            <h4>Email:</h4>
+            <p>{{feedback.email}}</p>
+            <h4>Phone Number:</h4>
+            <p>{{feedback.telnum}}</p>
+            <h4>May we contact you?</h4>
+            <p>{{feedback.agree}}</p>
+            <h4>How?:</h4>
+            <p>{{feedback.contacttype}}</p>
+            <h4>Feedback:</h4>
+            <p>{{feedback.message}}</p>
+      </mat-card-content>
+    </mat-card>
 </div>
